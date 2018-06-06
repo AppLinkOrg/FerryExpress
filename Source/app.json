@@ -1,0 +1,48 @@
+{
+  "pages":[
+    "pages/home/home",
+    "pages/quotelist/quotelist",
+    "pages/news/news",
+    "pages/service/service",
+    "pages/newslist/newslist",
+    "pages/aboutuslist/aboutuslist",
+    "pages/aboutus/aboutus",
+    "pages/index/index",
+    "pages/servicelist/servicelist",
+    "pages/member/member",
+    "pages/content/content",
+    "pages/logs/logs"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#F04848",
+    "navigationBarTextStyle":"white",
+    "enablePullDownRefresh": true
+  },
+  "tabBar": {
+    "color": "#cdcdcd",
+    "selectedColor": "#F04848",
+    "borderStyle": "white",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "text": "首页",
+        "pagePath": "pages/home/home",
+        "iconPath": "images/icons/home-o.png",
+        "selectedIconPath": "images/icons/home.png"
+      },
+      {
+        "text": "报价记录",
+        "pagePath": "pages/quotelist/quotelist",
+        "iconPath": "images/icons/quote-o.png",
+        "selectedIconPath": "images/icons/quote.png"
+      },
+      {
+        "text": "个人中心",
+        "pagePath": "pages/member/member",
+        "iconPath": "images/icons/user-o.png",
+        "selectedIconPath": "images/icons/user.png"
+      }
+    ]
+  }
+}
