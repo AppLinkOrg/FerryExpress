@@ -8,9 +8,12 @@
 .item-content{
   border:2rpx rgba(180, 180, 180, 0.5) solid;
   border-radius: 10rpx;
+  background: white;
 }
 
 .item-img{
   width: 326rpx;
   height: 220rpx;
+  border-top-right-radius: 10rpx;
+  border-top-left-radius: 10rpx;
 }

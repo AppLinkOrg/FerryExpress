@@ -6,12 +6,15 @@ import { ApiConfig } from "apis/apiconfig.js";
 import { ApiUtil } from "apis/apiutil.js";
 import { InstApi } from "apis/inst.api.js";
 import { MemberApi } from "apis/member.api";
+import { WechatApi } from "apis/wechat.api";
 
 export class AppBase {
 
   static UserInfo = {};
-  unicode = "yychy";
-  pagetitle=null;
+  unicode = "yyh";
+
+  needauth = true;
+  pagetitle = null;
   app = null;
   options = null;
   data = {
@@ -25,8 +28,8 @@ export class AppBase {
     this.me = this;
     //ApiConfig.SetToken("10e991a4ca7a93c60794628c11edaea3");
   }
-  setPageTitle(title){
-    this.pagetitle=title;
+  setPageTitle(title) {
+    this.pagetitle = title;
   }
   generateBodyJson() {
     var base = this;
@@ -75,8 +78,8 @@ export class AppBase {
        * 用户点击右上角分享
        */
       onShareAppMessage: base.onShareAppMessage,
-      onMyShow: base.onMyShow, 
-
+      onMyShow: base.onMyShow,
+      phonenoCallback: base.phonenoCallback,
       viewPhoto: base.viewPhoto,
       phoneCall: base.phoneCall,
       openMap: base.openMap,
@@ -85,9 +88,15 @@ export class AppBase {
       logout: base.logout,
       switchTab: base.switchTab,
       closePage: base.closePage,
-      gotoPage: base.gotoPage, 
+      gotoPage: base.gotoPage,
       navtoPage: base.navtoPage,
-      openContent: base.openContent
+      openContent: base.openContent,
+      getPhoneNo: base.getPhoneNo,
+      dataReturn: base.dataReturn,
+      dataReturnCallback: base.dataReturnCallback
+
+
+      
     }
   }
   log() {
@@ -123,33 +132,33 @@ export class AppBase {
   }
   onReady() {
     console.log("onReady");
-  }minimm
+  } minimm
   onShow() {
     var that = this;
-    var instapi=new InstApi();
-    
+    var instapi = new InstApi();
+
     if (this.Base.pagetitle != null) {
       if (wx.setNavigationBarTitle({
         title: this.Base.pagetitle
       }));
-    } 
+    }
 
-    instapi.info({},(instinfo)=>{
-      if(instinfo==null||instinfo==false){
+    instapi.info({}, (instinfo) => {
+      if (instinfo == null || instinfo == false) {
         wx.navigateTo({
           url: '/pages/content/content?keycode=' + "inactiveinst" + "&title=" + "机构权限已过期",
         })
         return;
       }
-      this.Base.setMyData({instinfo:instinfo});
-      if(this.Base.pagetitle==null){
+      this.Base.setMyData({ instinfo: instinfo });
+      if (this.Base.pagetitle == null) {
         if (wx.setNavigationBarTitle({
           title: instinfo.name
         }));
-      }else{
+      } else {
 
       }
-    },false);
+    }, false);
 
     if (AppBase.UserInfo.openid == undefined) {
       // 登录
@@ -184,8 +193,14 @@ export class AppBase {
             fail: res => {
               console.log(res);
               //that.Base.gotoOpenUserInfoSetting();
-              that.onMyShow();
-              //that.Base.getAddress();
+              if (this.Base.needauth == true) {
+                wx.redirectTo({
+                  url: '/pages/auth/auth',
+                })
+              } else {
+                that.onMyShow();
+              }
+              //that.getAddress();
             }
           });
 
@@ -199,11 +214,11 @@ export class AppBase {
         that.Base.setMyData({ UserInfo: AppBase.UserInfo });
       }
       that.onMyShow();
-      //that.Base.getAddress();
     }
 
   }
-  onMyShow(){
+
+  onMyShow() {
     console.log("onMyShow");
   }
   onHide() {
@@ -224,12 +239,44 @@ export class AppBase {
 
 
   }
+
+  dataReturn(data){
+    var pages = getCurrentPages();
+    var currPage = pages[pages.length - 1];  //当前页面
+    var prevPage = pages[pages.length - 2]; //上一个页面
+
+    //直接调用上一个页面的setData()方法，把数据存到上一个页面中去
+    this.dataReturnCallback(this.Base.options.callbackid,data);
+    wx.navigateBack();
+  }
+
+  dataReturnCallback(callbackid, data){
+    console.log("please use dataReturnCallback(callbackid, data)");
+  }
+
   setMyData(obj) {
     console.log(obj);
     this.Page.setData(obj);
   }
   getMyData() {
     return this.Page.data;
+  }
+  getPhoneNo(e) {
+    var that = this;
+    console.log(e);
+    var api = new WechatApi();
+    api.decrypteddata(e.detail, (ret) => {
+      console.log(ret);
+      var memberapi = new MemberApi();
+      memberapi.bindmobile({ mobile: ret.return.phoneNumber }, (aa) => {
+        that.phonenoCallback(ret.return.phoneNumber, e)
+      });
+    });
+  }
+  phonenoCallback(phoneno, e) {
+    console.log("phone no callback");
+    console.log(phoneno);
+    console.log(e);
   }
   viewPhoto(e) {
     var img = e.currentTarget.id;
@@ -255,14 +302,15 @@ export class AppBase {
       phoneNumber: tel
     })
   }
-  getAddress(lat, lng) {
-    var that=this;
+  getAddress(callback,lat, lng) {
+    var that = this;
     if (AppBase.QQMAP == null) {
       var QQMapWX = require('libs/qqmap/qqmap-wx-jssdk.js');
       AppBase.QQMAP = new QQMapWX({
         key: 'IDVBZ-TSAKD-TXG43-H442I-74KVK-6LFF5'
       });
     }
+    console.log("getmyaddress");
     if (lat == undefined && lng == undefined) {
       wx.getLocation({
         success: function (res) {
@@ -274,7 +322,8 @@ export class AppBase {
               longitude: lng
             },
             success: function (res) {
-              that.setMyData({address:res.result.address});
+              //that.setMyData({ addressinfo:res.result });
+              callback(res.result);
             },
             fail: function (res) {
               console.log("fail");
@@ -296,6 +345,7 @@ export class AppBase {
         success: function (res) {
           console.log("success");
           console.log(res);
+          callback( res.result);
         },
         fail: function (res) {
           console.log("fail");
@@ -418,7 +468,7 @@ export class AppBase {
     })
   }
 
-  uploadVideo(modul, callback,completecallback) {
+  uploadVideo(modul, callback, completecallback) {
     wx.chooseVideo({
       compressed: true, // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
@@ -461,13 +511,13 @@ export class AppBase {
             }
           });
         }
-        if(completecallback!=undefined){
+        if (completecallback != undefined) {
           completecallback();
         }
       }
     })
   }
-  
+
   takeImage(modul, callback) {
     wx.chooseImage({
       count: 1,
@@ -512,6 +562,8 @@ export class AppBase {
       }
     })
   }
+
+
   takeVideo(modul, callback) {
     wx.chooseVideo({
       compressed: false,
@@ -634,15 +686,28 @@ export class AppBase {
   closePage() {
 
   }
-  openContent(e){
-    var title=e.target.dataset.title;
+  openContent(e) {
+    var title = e.target.dataset.title;
     var keycode = e.target.dataset.keycode;
     wx.navigateTo({
-      url: '/pages/content/content?keycode='+keycode+"&title="+title,
+      url: '/pages/content/content?keycode=' + keycode + "&title=" + title,
     })
   }
-  console(key,val){
-    var json={key,val};
+  console(key, val) {
+    var json = { key, val };
     console.log(json);
+  }
+
+  checkRealname(callback) {
+    var memberapi = new MemberApi();
+    memberapi.checkrealname({}, (ret) => {
+      if (ret == false) {
+        wx.navigateTo({
+          url: '/pages/signup/signup',
+        })
+      } else {
+        callback();
+      }
+    });
   }
 } 

@@ -1,114 +1,119 @@
 <!--pages/home/home.wxml-->
-<view class='flex-row tabs'>
-  <view class='flex-1 tab  flex-row ' bindtap='changeTab' id="0">
-    <view class='flex-1'></view>
-    <view class='tabtext {{currenttab==0?"active":""}}'>热门</view>
-    <view class='flex-1'></view>
-  </view>
-  <view class='flex-1 tab  flex-row ' bindtap='changeTab' id="1">
-    <view class='flex-1'></view>
-    <view class='tabtext {{currenttab==1?"active":""}}'>参考报价</view>
-    <view class='flex-1'></view>
-  </view>
-  <view class='flex-1 tab  flex-row ' bindtap='changeTab' id="2">
-    <view class='flex-1'></view>
-    <view class='tabtext {{currenttab==2?"active":""}}'>关于我们</view>
-    <view class='flex-1'></view>
+<view class='text-center headerback'>
+  <image src='{{uploadpath}}inst/{{logobackimg}}' mode='aspectFill'></image>
+</view>
+<view class='headerlogo'>
+  <view class='flex-row ' style='padding:40rpx;'>
+    <view class='logoborder'>
+      <image class='logo' src='{{uploadpath}}inst/{{logo}}'></image>
+    </view>
+    <view style='margin-left:20rpx;' class='flex-1'>
+      <view class='txt-white h5'>
+        {{name}}
+      </view>
+      <view class='flex-row flex-center flex-1 margin-top-10'>
+        <view class='flex-1'>
+          <view class='h6 txt-light '>电话：{{tel}}</view>
+          <view class='h6 txt-light '>{{address}}</view>
+        </view>
+        <view>
+          <image class='info-icon' src='{{uploadpath}}resource/location-white.png' bindtap='openMap' id="{{address}}"></image>
+        </view>
+        <view class='txt-white h6' style='margin-left:20rpx;margin-right:20rpx;'>|</view>
+        <view>
+          <image class='info-icon' src='{{uploadpath}}resource/phone-white.png' bindtap='phoneCall' id="{{tel}}" ></image>
+        </view>
+      </view>
+    </view>
   </view>
 </view>
 
-<swiper indicator-dots="{{false}}" current='{{currenttab}}' bindchange="changeCurrentTab" class="maintabs">
-  <swiper-item>
-    <scroll-view scroll-y style='height:100%'>
 
-      <swiper autoplay='true' indicator-dots='true'>
-        <swiper-item wx:for="{{indexbannerhot}}" wx:key="k">
-          <navigator url='{{item.objs_path}}'>
-            <image src='{{uploadpath}}indexbanner/{{item.img}}' style='width:100vw;height:300rpx;' mode="aspectFill"></image>
-          </navigator>
-        </swiper-item>
-      </swiper>
-      <view class='subbar flex-row'>
-        <view class='firsttab'></view>
-        <view class='secondtab'>待处理报价单</view>
-        <view class='thirdtab flex-1 text-right'></view>
+<view class='margin-top white-block'>
+  <view class='flex-row tabs'>
+    <view class='flex-1 tab  flex-row ' bindtap='changeTab' id="0">
+      <view class='flex-1'></view>
+      <view class='txt-light tabtext  {{currenttab==0?"active":""}}'>待处理</view>
+      <view class='flex-1'></view>
+    </view>
+    <view class='flex-1 tab  flex-row ' bindtap='changeTab' id="1">
+      <view class='flex-1'></view>
+      <view class='txt-light tabtext {{currenttab==1?"active":""}}'>询价中</view>
+      <view class='flex-1'></view>
+    </view>
+    <view class='flex-1 tab  flex-row ' bindtap='changeTab' id="2">
+      <view class='flex-1'></view>
+      <view class='txt-light tabtext {{currenttab==2?"active":""}}'>运输中</view>
+      <view class='flex-1'></view>
+    </view>
+  </view>
+
+
+
+  <view class='padding-20 flex-row flex-wrap' wx:if="{{currenttab==0}}">
+    0
+  </view>
+  <view class='padding-20 flex-row flex-wrap' wx:if="{{currenttab==1}}">
+    1
+  </view>
+  <view class='padding-20 flex-row flex-wrap' wx:if="{{currenttab==2}}">
+    2
+  </view>
+
+</view>
+
+
+<view class='margin-top padding-20 white-block' wx:if="{{poster!=''}}">
+  <image src='{{uploadpath}}inst/{{poster}}' style='width:100%' mode='widthFix'></image>
+</view>
+
+<view class='padding-40 white-block margin-top'>
+  <view class='h4 txt-bold'>货运保障</view>
+  <view class='flex-row flex-wrap margin-top-10'>
+    <view class='baozhangitem'>
+      <view class='text-center'>
+        <image src='{{uploadpath}}resource/anxin.png'></image>
       </view>
-        <view class='white-block padding-20 h5 '>
-          暂无报价单
-        </view>
-
-        <view class='block-100'>
-        
-        </view>
-
-        <view class='fixedbottom2 '>
-        <button type='primary' style='margin:20rpx;'>报价</button>
-        </view>
-
-    </scroll-view>
-  </swiper-item>
-  <swiper-item>
-    <scroll-view scroll-y style='height:100%'>
-    </scroll-view>
-  </swiper-item>
-  <swiper-item>
-    <scroll-view scroll-y style='height:100%'>
-
-      <swiper autoplay='true' indicator-dots='true'>
-        <swiper-item wx:for="{{indexbanner}}" wx:key="k">
-          <navigator url='{{item.objs_path}}'>
-            <image src='{{uploadpath}}indexbanner/{{item.img}}' style='width:100vw;height:300rpx;' mode="aspectFill"></image>
-          </navigator>
-        </swiper-item>
-      </swiper>
-
-      <view class='flex-row padding-20'>
-        <view class='flex-1 text-center' bindtap='viewPhoto' id="{{uploadpath}}inst/{{inst.permit}}" wx:if="{{inst.permit!=''}}">
-          <view>
-            <image class='maintab_icon' src='{{uploadpath}}resource/permit.png'></image>
-          </view>
-          <view class='h6 '>
-            营业执照
-          </view>
-        </view>
-        <view class='flex-1 text-center' bindtap='phoneCall' id="{{inst.tel}}" wx:if="{{inst.tel!=''}}">
-          <view>
-            <image class='maintab_icon' src='{{uploadpath}}resource/phone.png'></image>
-          </view>
-          <view class='h6 '>
-            热线
-          </view>
-        </view>
-        <view class='flex-1 text-center' bindtap='openMap' id="{{inst.address}}" wx:if="{{inst.address!=''}}">
-          <view>
-            <image class='maintab_icon' src='{{uploadpath}}resource/map.png'></image>
-          </view>
-          <view class='h6 '>
-            地址
-          </view>
-        </view>
-        <view class='flex-1 text-center'>
-          <view>
-            <image class='maintab_icon' src='{{uploadpath}}resource/kefu.png'></image>
-            <contact-button size="30" style='margin-left:-60rpx;' class='clear-contact'></contact-button>
-          </view>
-          <view class='h6 '>
-            客服
-          </view>
-        </view>
+      <view class='text-center h6'>
+        无事故，无火烧，无水泡
       </view>
+    </view>
+    <view class='baozhangitem'>
+      <view class='text-center'>
+        <image src='{{uploadpath}}resource/jiance.png'></image>
+      </view>
+      <view class='text-center h6'>
+        专业检测车队，还原真实车况
+      </view>
+    </view>
+    <view class='baozhangitem'>
+      <view class='text-center'>
+        <image src='{{uploadpath}}resource/baozheng.png'></image>
+      </view>
+      <view class='text-center h6'>
+        全程保障，无忧购车
+      </view>
+    </view>
+  </view>
+</view>
 
-      <navigator url='/pages/aboutus/aboutus?id={{item.id}}' wx:for="{{aboutuslist}}" wx:key="key">
-        <view class='subbar flex-row'>
-          <view class='firsttab'></view>
-          <view class='secondtab'>{{item.name}}</view>
-          <view class='thirdtab flex-1 text-right'></view>
-        </view>
-        <view class='white-block padding-20 h5 '>
-          {{item.summary}}
-        </view>
-      </navigator>
 
-    </scroll-view>
-  </swiper-item>
-</swiper>
+
+
+<view class='padding-40 white-block margin-top'>
+  <view class='h4 txt-bold'>特色服务</view>
+  <view class='flex-row flex-wrap margin-top-10'>
+    <navigator  class='baozhangitem flex-row flex-center' wx:for="{{servicelist}}" wx:key="k">
+      <view>
+        <icon size='12' type='success'></icon>
+      </view>
+      <view class='h6' style='margin-left:10rpx;'>
+        {{item.name}}
+      </view>
+    </navigator>
+  </view>
+</view>
+
+<view wx:if="{{instinfo.level!=3}}" class='inbottomla txt-gray h6'>
+  云易创提供技术支持
+</view>

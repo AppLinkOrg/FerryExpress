@@ -10,11 +10,11 @@
   </block>
 </view>
 
-<swiper indicator-dots="{{false}}"  current='{{currenttab}}' bindchange="changeCurrentTab" class="maintabs">
+<swiper indicator-dots="{{false}}" class='bottomtabs ' current='{{currenttab}}' bindchange="changeCurrentTab" class="maintab">
   <swiper-item wx:for="{{newscat}}" wx:key="aaa" wx:for-index="index">
     <scroll-view scroll-y style='height:100%'>
       <block wx:for="{{item.newslist}}" wx:key="k">
-        <navigator url='/pages/news/news?id={{item.id}}' class='flex-row rowitem'>
+        <navigator url='/pages/news/news?id={{item.id}}' class='flex-row rowitem white-block'>
           <view>
             <image src='{{uploadpath}}news/{{item.cover}}' class='imgcover' mode='aspectFill'></image>
           </view>

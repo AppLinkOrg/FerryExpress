@@ -1,0 +1,23 @@
+<!--pages/route/route.wxml-->
+<map id="map"  scale="15" latitude='{{mylocation.ad_info.location.lat}}' longitude='{{mylocation.ad_info.location.lng}}' show-location style="width: 100vw; height: 100vh;">
+
+<cover-view class='fixedbottom '>
+  <view class='box-shadow routerbox padding-20'>
+    <block >
+    <view class='flex-row flex-center padding-20' bindtap='selectAddress' id="0">
+      <view class='padding-20'>
+        <cover-image class='dot' style='background-color:lightblue'></cover-image>
+      </view>
+      <view class='flex-1 '><view class='txt-gray'>选择起点</view></view>
+    </view>
+    <view class='flex-row flex-center'>
+      <view class='padding-20' style='padding-top:0rpx;padding-bottom:0rpx;'>
+        <cover-image class='dot' style='background-color:white'></cover-image>
+      </view>
+      <view class='flex-1 txt-gray border-bottom'></view>
+    </view>
+    </block>
+  </view>
+</cover-view>
+
+</map>

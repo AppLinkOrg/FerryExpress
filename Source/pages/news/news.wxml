@@ -1,7 +1,7 @@
 <!--pages/content/content.wxml-->
 <import src="../../wxParse/wxParse.wxml" />
 <view class='bg-primary  flex-row bigheader'>
-  <view class='txt-white h3 '>{{name}}</view>
+  <view class='h4 '>{{name}}</view>
 </view>
 
 <view class='text-right padding-20 h6'>

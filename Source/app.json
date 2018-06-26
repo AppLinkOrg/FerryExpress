@@ -1,7 +1,14 @@
 {
   "pages":[
+    "pages/route/route",
+    "pages/addressselect/addressselect",
+    "pages/quoteferry/quoteferry",
     "pages/home/home",
-    "pages/quotelist/quotelist",
+    "pages/product/product",
+    "pages/auth/auth",
+    "pages/success/success",
+    "pages/signup/signup",
+    "pages/productlist/productlist",
     "pages/news/news",
     "pages/service/service",
     "pages/newslist/newslist",
@@ -15,8 +22,6 @@
   ],
   "window":{
     "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#F04848",
-    "navigationBarTextStyle":"white",
     "enablePullDownRefresh": true
   },
   "tabBar": {
@@ -32,14 +37,14 @@
         "selectedIconPath": "images/icons/home.png"
       },
       {
-        "text": "报价记录",
-        "pagePath": "pages/quotelist/quotelist",
+        "text": "报价单",
+        "pagePath": "pages/servicelist/servicelist",
         "iconPath": "images/icons/quote-o.png",
         "selectedIconPath": "images/icons/quote.png"
       },
       {
-        "text": "个人中心",
-        "pagePath": "pages/member/member",
+        "text": "服务",
+        "pagePath": "pages/servicelist/servicelist",
         "iconPath": "images/icons/user-o.png",
         "selectedIconPath": "images/icons/user.png"
       }

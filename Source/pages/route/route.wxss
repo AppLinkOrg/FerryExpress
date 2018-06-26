@@ -1,0 +1,11 @@
+/* pages/route/route.wxss */
+.routerbox{
+  background-color: white;
+  margin:40rpx;
+}
+.dot{
+  width: 16rpx;
+  height: 16rpx;
+  background-color:black;
+  border-radius: 8rpx;
+}
