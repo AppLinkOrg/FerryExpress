@@ -50,17 +50,22 @@
 
 
 
-  <view class='padding-20 flex-row flex-wrap' wx:if="{{currenttab==0}}">
-    0
+  <view class='padding-20 flex-row flex-wrap h6' wx:if="{{currenttab==0}}">
+    暂无信息
   </view>
-  <view class='padding-20 flex-row flex-wrap' wx:if="{{currenttab==1}}">
-    1
+  <view class='padding-20 flex-row flex-wrap h6' wx:if="{{currenttab==1}}">
+    暂无信息
   </view>
-  <view class='padding-20 flex-row flex-wrap' wx:if="{{currenttab==2}}">
-    2
+  <view class='padding-20 flex-row flex-wrap h6' wx:if="{{currenttab==2}}">
+    暂无信息
+  </view>
+
+  <view class='padding-40'>
+    <button type='primary' bindtap='gotoFerryQuote'>获取报价</button>
   </view>
 
 </view>
+
 
 
 <view class='margin-top padding-20 white-block' wx:if="{{poster!=''}}">

@@ -27,6 +27,9 @@ export class ApiUtil {
     return val.getFullYear() + "-" + (val.getMonth() + 1) + "-" + val.getDate() +
       " " + val.getHours() + ":" + val.getMinutes() + ":" + val.getSeconds();
   }
+  static FormatDate(val) {
+    return val.getFullYear() + "-" + (val.getMonth() + 1) + "-" + val.getDate() ;
+  }
 
   static IsMobileNo(str) {
 
@@ -44,9 +47,6 @@ export class ApiUtil {
   static FormatNumber(val, digits) {
     val = val * 1.0;
     return val.toFixed(digits);
-  }
-  static FormatDate(val) {
-    return val.substr(0, 10);
   }
   static Storage = null;
 

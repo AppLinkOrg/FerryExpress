@@ -45,7 +45,11 @@ class Content extends AppBase {
     console.log(e);
     this.Base.setMyData({ currenttab: e.currentTarget.id });
   }
-
+  gotoFerryQuote(){
+    wx.navigateTo({
+      url: '/pages/quoteferry/quoteferry',
+    })
+  }
 }
 var content = new Content();
 var body = content.generateBodyJson();
@@ -54,7 +58,9 @@ body.onMyShow = content.onMyShow;
 body.gotoSearch = content.gotoSearch;
 body.changeCurrentTab = content.changeCurrentTab;
 body.changeTab = content.changeTab;
-body.switchBrand = content.switchBrand;
-body.switchPrice = content.switchPrice;
+body.switchBrand = content.switchBrand; 
+body.switchPrice = content.switchPrice; 
 body.switchSize = content.switchSize;
+body.gotoFerryQuote = content.gotoFerryQuote;
+
 Page(body)

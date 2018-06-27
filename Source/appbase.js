@@ -9,7 +9,7 @@ import { MemberApi } from "apis/member.api";
 import { WechatApi } from "apis/wechat.api";
 
 export class AppBase {
-
+  static QQMAPKEY ="IDVBZ-TSAKD-TXG43-H442I-74KVK-6LFF5";
   static UserInfo = {};
   unicode = "yyh";
 
@@ -244,9 +244,9 @@ export class AppBase {
     var pages = getCurrentPages();
     var currPage = pages[pages.length - 1];  //当前页面
     var prevPage = pages[pages.length - 2]; //上一个页面
-
+    console.log("????");
     //直接调用上一个页面的setData()方法，把数据存到上一个页面中去
-    this.dataReturnCallback(this.Base.options.callbackid,data);
+    prevPage.dataReturnCallback(this.Base.options.callbackid,data);
     wx.navigateBack();
   }
 
@@ -307,7 +307,7 @@ export class AppBase {
     if (AppBase.QQMAP == null) {
       var QQMapWX = require('libs/qqmap/qqmap-wx-jssdk.js');
       AppBase.QQMAP = new QQMapWX({
-        key: 'IDVBZ-TSAKD-TXG43-H442I-74KVK-6LFF5'
+        key: AppBase.QQMAPKEY
       });
     }
     console.log("getmyaddress");

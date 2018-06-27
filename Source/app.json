@@ -1,9 +1,10 @@
 {
   "pages":[
-    "pages/route/route",
-    "pages/addressselect/addressselect",
     "pages/quoteferry/quoteferry",
     "pages/home/home",
+    "pages/goodsselect/goodsselect",
+    "pages/route/route",
+    "pages/addressselect/addressselect",
     "pages/product/product",
     "pages/auth/auth",
     "pages/success/success",

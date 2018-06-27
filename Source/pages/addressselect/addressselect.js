@@ -88,7 +88,8 @@ class Content extends AppBase {
     this.search();
   }
 
-  locationSelect(idx){
+  locationSelect(idx) {
+    console.log("laasdasd");
     idx=idx.currentTarget.id;
     var items=this.Base.getMyData().items;
     var item=items[idx];

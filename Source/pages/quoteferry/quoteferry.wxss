@@ -6,6 +6,19 @@ page{
   width: 100vw;
   height: 100vh;
 }
+.fullscreenbgimg{
+  position: absolute;
+  top: 0rpx;
+  width: 100vw;
+  height: 100vh;
+}
+.fullscreenbg{
+  position: absolute;
+  top: 0rpx;
+  width: 100vw;
+  height: 100vh;
+  background-color:rgba(0, 0, 0, 0.7);
+}
 .form{
   background-color:  rgba(255, 255, 255, 0.95);
   border-radius: 10rpx;
