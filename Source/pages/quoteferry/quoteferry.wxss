@@ -11,6 +11,7 @@ page{
   top: 0rpx;
   width: 100vw;
   height: 100vh;
+  z-index:-1;
 }
 .fullscreenbg{
   position: absolute;
@@ -18,8 +19,9 @@ page{
   width: 100vw;
   height: 100vh;
   background-color:rgba(0, 0, 0, 0.7);
+  z-index:-1;
 }
 .form{
-  background-color:  rgba(255, 255, 255, 0.95);
+  background-color:  rgba(255,255,255,0.9);
   border-radius: 10rpx;
 }

@@ -142,9 +142,8 @@
   <view style='width:5vw;height:100%;'></view>
 </view>
 
-<!--
 <view class="fullscreenbgimg">
   <image class='fullscreen' src='{{uploadpath}}inst/{{instinfo.quotebg}}'></image>
 </view>
 <view class='fullscreenbg'>
-</view>-->
+</view>
