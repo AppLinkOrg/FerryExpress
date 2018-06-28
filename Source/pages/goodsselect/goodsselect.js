@@ -25,6 +25,7 @@ class Content extends AppBase {
     goodsapi.list({},(goodslist)=>{
       this.Base.setMyData({ goodslist});
     });
+    this.calc();
   }
   goodsSelect(e){
     console.log(e);
@@ -47,17 +48,17 @@ class Content extends AppBase {
     this.calc();
   }
   calc(){
-    var totalweight=0;
+    var weight=0;
     var goods = this.Base.getMyData().goods;
     for(var i=0;i<goods.length;i++){
-      totalweight += goods[i].val * goods[i].exchange;
+      weight += goods[i].val * goods[i].exchange;
     }
-    if(totalweight>=1000){
-      totalweight=(totalweight/1000).toFixed(2)+"吨";
+    if(weight>=1000){
+      weight = (weight/1000).toFixed(2)+"吨";
     }else{
-      totalweight = (totalweight ).toFixed(2) + "公斤";
+      weight = (weight ).toFixed(2) + "公斤";
     }
-    this.Base.setMyData({ totalweight });
+    this.Base.setMyData({ weight });
   }
   minus(e){
     var seq = e.currentTarget.id;
@@ -79,7 +80,7 @@ class Content extends AppBase {
     }
     var ret = {
       goods: data.goods,
-      totalweight: data.totalweight
+      weight: data.weight
     };
     this.dataReturn(ret);
   }

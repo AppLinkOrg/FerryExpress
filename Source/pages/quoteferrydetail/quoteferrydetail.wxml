@@ -1,0 +1,52 @@
+<!--pages/quoteferrydetail/quoteferrydetail.wxml-->
+<!--pages/findcar/findcar.wxml-->
+<form bindsubmit="formSubmit" bindreset="formReset">
+<view class='margin-top'></view>
+<view class='margin-top'></view>
+<view class='margin-top'></view>
+<view class='text-center'>
+  <image src='{{uploadpath}}resource/kefu1.png' class='kefuicon'></image>
+</view>
+<view class='h6 text-center margin-top-10'>
+  感谢你的询价，我们将会以最快的速度回复
+</view>
+<view class='margin-top'></view>
+<view class='margin-top flex-row flex-center  border-bottom padding-20' style='margin:20rpx;'>
+  <view style='width:200rpx;' class='h6'>行程</view>
+  <view class='flex-1'><input placeholder='请选择' name="automodel" value='{{automodel}}' hidden="{{noticesuccess==true}}"></input></view>
+</view>
+
+<view class='margin-top flex-row flex-center  border-bottom padding-20' style='margin:20rpx;'>
+  <view style='width:200rpx;'>购车预算</view>
+  <view class='flex-1'><input placeholder='请输入' value='{{price}}' name="price" type='number'  hidden="{{noticesuccess==true}}"></input></view>
+  <view>万元</view>
+</view>
+
+<view class='margin-top flex-row flex-center  border-bottom padding-20' style='margin:20rpx;'>
+  <view style='width:200rpx;'>其它要求</view>
+  <view class='flex-1'><textarea placeholder='如2年，3万公里内或新车' value='{{require}}' class='ta' auto-height maxlength='144' name="require" hidden="{{noticesuccess==true}}" ></textarea></view>
+</view>
+
+
+<view class='margin-top flex-row flex-center  border-bottom padding-20' style='margin:20rpx;'>
+  <view style='width:200rpx;'>手机号</view>
+  <view class='flex-1'><input placeholder='请输入' value='{{mobile}}' name="mobile" maxlength='11'  hidden="{{noticesuccess==true}}"></input></view>
+  <view><button size='mini' open-type='getPhoneNumber' bindgetphonenumber='getPhoneNo' >获取</button></view>
+</view>
+
+<view class='padding-40 margin-top'>
+  <button type='primary'  formType="submit" >专属顾问为你提供服务</button>
+</view>
+
+</form>
+
+
+<view class='noticeblackbg' wx:if="{{noticesuccess==true}}"></view>
+<view class='noticebg' style='background-image:url({{uploadpath}}resource/noticebg.png)' wx:if="{{noticesuccess==true}}">
+  <view class='h3 text-center' style='margin-top:300rpx;'>已为你通知商家</view>
+  <view class='h6 text-center padding-20'>您的专属销售顾问会尽快与你取得联系！</view>
+  <view class='h6 text-center'>联系电话：{{mobile}}</view>
+  <view class='text-center padding-20'>
+    <button size='mini' class="h6" bindtap='closenotice'>知道了</button>
+  </view>
+</view>

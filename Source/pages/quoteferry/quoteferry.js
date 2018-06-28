@@ -3,6 +3,7 @@ import { AppBase } from "../../appbase";
 import { ApiConfig } from "../../apis/apiconfig";
 import { InstApi } from "../../apis/inst.api.js";
 import { MemberApi } from "../../apis/member.api.js";
+import { QuoteferryApi } from "../../apis/quoteferry.api.js";
 
 class Content extends AppBase {
   constructor() {
@@ -22,15 +23,31 @@ class Content extends AppBase {
   onMyShow() {
     var that = this;
 
-    var mobile = this.Base.getMyData().mobile;
-    if (mobile == "") {
+    if(this.Base.options.id==undefined){
+      var mobile = this.Base.getMyData().mobile;
+      if (mobile == "") {
 
-      var memberapi = new MemberApi();
-      memberapi.info({}, (memberinfo) => {
-        console.log(memberinfo);
-        this.Base.setMyData({ mobile: memberinfo.mobile });
-      });
+        var memberapi = new MemberApi();
+        memberapi.info({}, (memberinfo) => {
+          console.log(memberinfo);
+          this.Base.setMyData({ mobile: memberinfo.mobile });
+        });
+      }
+    }else{
+      var quoteferryapi = new QuoteferryApi();
+      var id = this.Base.getMyData().id;
+      if(id==undefined){
+
+        quoteferryapi.info({ id: this.Base.options.id }, (info) => {
+          for (var i = 0; i < info.route.length; i++) {
+            info.route[i].location = { lat: info.route[i].lat, lng: info.route[i].lng };
+          }
+          this.Base.setMyData(info);
+        });
+      }
     }
+
+
 
   }
   phonenoCallback(mobile,e){
@@ -75,6 +92,11 @@ class Content extends AppBase {
   }
   confirmQuote(){
     var data = this.Base.getMyData();
+    console.log(data);
+    if (data.mobile==null||data.mobile.length != 11 || data.mobile[0] != "1") {
+      this.Base.info("请正确输入手机号码");
+      return;
+    }
     if(data.route==undefined){
       this.Base.info("请选择路线");
       return;
@@ -83,14 +105,31 @@ class Content extends AppBase {
       this.Base.info("请选择货物");
       return;
     }
-    if (data.mobile.length != 11 || data.mobile[0]!="1") {
-      this.Base.info("请正确输入手机号码");
-      return;
-    }
     if (data.realname.length ==0) {
       this.Base.info("请输入真实姓名");
       return;
     }
+    var api = new QuoteferryApi();
+    var req = {
+      route: JSON.stringify(data.route),
+      distance: data.distance,
+      duration: data.duration,
+      goods: JSON.stringify(data.goods),
+      weight: data.weight,
+      remark: data.remark,
+      mobile: data.mobile,
+      realname: data.realname
+    };
+    if(this.Base.options.id!=undefined){
+      req.primary_id = this.Base.options.id;
+    }
+    console.log(req);
+    api.create(req,
+    (ret)=>{
+      wx.redirectTo({
+        url: '/pages/success/success?backpage=home&backmode=switch&title=询价提交成功',
+      })
+    });
   }
   remarkChange(e){
     this.Base.setMyData({remark:e.detail.value});

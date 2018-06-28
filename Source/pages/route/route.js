@@ -14,8 +14,12 @@ class Content extends AppBase {
     if(options.route==undefined){
       this.Base.setMyData({ route: [null, null] });
     //this.Base.setMyData({route: [{ title: "电影大厦", location: { lat: 22.54478, lng: 114.1132 } }, {title: "宁水花园", location:{ lat: 22.5613, lng: 114.14539 } }] });
-    }else{
-      this.Base.setMyData({ route: JSON.parse(options.route) });
+    } else {
+      console.log("route");
+      console.log(options.route);
+      var route = JSON.parse(options.route);
+      console.log(route);
+      this.Base.setMyData({ route: route });
     }
   }
   onMyShow() {
@@ -148,9 +152,8 @@ class Content extends AppBase {
             that.Base.setMyData({
               polyline: [{
                 points: points,
-                color: "#FF0000DD",
-                width: 2,
-                dottedLine: true
+                color: "#F04848",
+                width: 4
               }],
               markers: markers, distance: distance, duration: duration});
           }

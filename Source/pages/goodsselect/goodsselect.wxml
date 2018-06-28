@@ -39,7 +39,7 @@
   </view>
   <block wx:if="{{goods.length>0}}">
     <view class=' margin-top-10 border-bottom'></view>
-    <view class='text-right margin-top'>约 <label class='txt-primary'>{{totalweight}}</label></view>
+    <view class='text-right margin-top'>约 <label class='txt-primary'>{{weight}}</label></view>
   </block>
 </view>
 

@@ -1,13 +1,14 @@
 {
   "pages":[
-    "pages/quoteferry/quoteferry",
     "pages/home/home",
+    "pages/quoteferrydetail/quoteferrydetail",
+    "pages/success/success",
+    "pages/quoteferry/quoteferry",
     "pages/goodsselect/goodsselect",
     "pages/route/route",
     "pages/addressselect/addressselect",
     "pages/product/product",
     "pages/auth/auth",
-    "pages/success/success",
     "pages/signup/signup",
     "pages/productlist/productlist",
     "pages/news/news",

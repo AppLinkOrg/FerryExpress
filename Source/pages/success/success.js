@@ -10,13 +10,19 @@ class Content extends AppBase {
     this.Base.Page = this;
     //options.id=5;
     super.onLoad(options);
-    this.Base.setMyData({
-      inputShowed: false,
-      inputVal: ""
-    });
+    this.Base.setMyData({title:options.title});
+  }
+  backtopage(){
+    wx.switchTab({
+      url: '/pages/home/home',
+      success: function(res) {},
+      fail: function(res) {},
+      complete: function(res) {},
+    })
   }
 }
 var content = new Content();
-var body = content.generateBodyJson();
+var body = content.generateBodyJson(); 
 body.onLoad = content.onLoad;
+body.backtopage = content.backtopage;
 Page(body)

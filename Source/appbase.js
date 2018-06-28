@@ -266,6 +266,7 @@ export class AppBase {
     console.log(e);
     var api = new WechatApi();
     api.decrypteddata(e.detail, (ret) => {
+      console.log("decrypteddata");
       console.log(ret);
       var memberapi = new MemberApi();
       memberapi.bindmobile({ mobile: ret.return.phoneNumber }, (aa) => {

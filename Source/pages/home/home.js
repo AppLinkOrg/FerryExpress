@@ -2,6 +2,7 @@
 import { AppBase } from "../../appbase";
 import { ApiConfig } from "../../apis/apiconfig";
 import { InstApi } from "../../apis/inst.api.js";
+import { QuoteferryApi } from "../../apis/quoteferry.api.js";
 
 class Content extends AppBase {
   constructor() {
@@ -22,19 +23,16 @@ class Content extends AppBase {
     instapi.info({}, (info) => {
       that.Base.setMyData(info);
     });
-    instapi.aboutuslist({ inhome: "Y" }, (aboutuslist) => {
-      that.Base.setMyData({ aboutuslist: aboutuslist });
-    });
-    instapi.newslist({ inhome: "Y" }, (newslist) => {
-      that.Base.setMyData({ newslist: newslist });
-    });
     instapi.servicelist({}, (servicelist) => {
       that.Base.setMyData({ servicelist: servicelist });
     });
-    instapi.productlist({ inhome: "Y" }, (productlist) => {
-      that.Base.setMyData({ productlist: productlist });
+    var quoteferryapi = new QuoteferryApi();
+    quoteferryapi.list({status:2},(ret)=>{
+      this.Base.setMyData({list_2:ret});
     });
-
+    quoteferryapi.list({ status: 1 }, (ret) => {
+      this.Base.setMyData({ list_1: ret });
+    });
   }
 
   changeCurrentTab(e) {

@@ -50,10 +50,14 @@ class Content extends AppBase {
     var data = this.Base.getMyData();
     console.log(data);
     var inputVal = this.Base.getMyData().inputVal;
+    var routesearcharea = this.Base.getMyData().instinfo.routesearcharea;
+    if(routesearcharea==""){
+      routesearcharea="中国";
+    }
     console.log(inputVal);
     QQMAP.getSuggestion({
       keyword: inputVal,
-      region: "中国",
+      region: routesearcharea,
       region_fix: 1,
       //policy:1,
       success: function (res) {
