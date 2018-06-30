@@ -1,0 +1,38 @@
+<!--pages/home/home.wxml-->
+<block wx:for="{{instlist}}" wx:key="key" wx:for-index="idx">
+<view class='white-block'>
+  <view class='padding-20 flex-row flex-center'>
+    <view class='h5 flex-1'>{{item.name}} <text class='txt-gray h6'>{{item.quoteferry.length}}张报价等待处理</text></view>
+    <view id="{{idx}}" bindtap='skyView'>
+      <image src='{{uploadpath}}resource/a-right.png' class='icon-15' wx:if="{{item.skt==true}}"></image>
+      <image src='{{uploadpath}}resource/a-down.png' class='icon-15' wx:if="{{item.skt!=true}}"></image>
+    </view>
+  </view>
+  <view class='padding-20' hidden='{{item.skt==true}}'>
+    <navigator url='/pages/quoteferryreply/quoteferryreply?id={{qf.id}}' wx:for="{{item.quoteferry}}" wx:key="k2" wx:for-item="qf" class='{border-bottom flex-row flex-center padding-20'>
+      <view class='flex-1'>
+      
+      <view class='flex-row'>
+        <view style='width:150rpx' >时间：</view>
+        <view class='flex-1' >{{qf.submit_time}}</view>
+      </view>
+      <view class='flex-row'>
+        <view style='width:150rpx' >行程：</view>
+        <view class='flex-1' >{{qf.routestr}} {{qf.distance}} {{qf.duration}}</view>
+      </view>
+      <view class='flex-row'>
+        <view style='width:150rpx' >货物：</view>
+        <view class='flex-1' >{{qf.goodsstr}} {{qf.weight}}</view>
+      </view>
+      </view>
+      <view class='txt-primary'>
+          立即报价
+      </view>
+    </navigator>
+  </view>
+</view>
+</block>
+
+<view wx:if="{{instinfo.level!=3}}" class='inbottomla txt-gray h6'>
+  云易创提供技术支持
+</view>

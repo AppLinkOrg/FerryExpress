@@ -1,0 +1,7 @@
+/* pages/quoteferryreply/quoteferryreply.wxss */
+.maintab{
+  height: 40vh;
+}
+view{
+  font-size: 24rpx;
+}

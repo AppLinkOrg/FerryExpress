@@ -1,0 +1,54 @@
+{
+  "pages":[
+    "pages/home/home",
+    "pages/quoteferryreply/quoteferryreply",
+    "pages/quoteferrylist/quoteferrylist",
+    "pages/quoteferrydetail/quoteferrydetail",
+    "pages/success/success",
+    "pages/quoteferry/quoteferry",
+    "pages/product/product",
+    "pages/auth/auth",
+    "pages/signup/signup",
+    "pages/productlist/productlist",
+    "pages/news/news",
+    "pages/service/service",
+    "pages/newslist/newslist",
+    "pages/aboutuslist/aboutuslist",
+    "pages/aboutus/aboutus",
+    "pages/index/index",
+    "pages/servicelist/servicelist",
+    "pages/member/member",
+    "pages/content/content",
+    "pages/logs/logs"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "enablePullDownRefresh": true
+  },
+  "tabBar": {
+    "color": "#cdcdcd",
+    "selectedColor": "#F04848",
+    "borderStyle": "white",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "text": "首页",
+        "pagePath": "pages/home/home",
+        "iconPath": "images/icons/home-o.png",
+        "selectedIconPath": "images/icons/home.png"
+      },
+      {
+        "text": "数据统计",
+        "pagePath": "pages/quoteferrylist/quoteferrylist",
+        "iconPath": "images/icons/quote-o.png",
+        "selectedIconPath": "images/icons/quote.png"
+      },
+      {
+        "text": "我的",
+        "pagePath": "pages/member/member",
+        "iconPath": "images/icons/user-o.png",
+        "selectedIconPath": "images/icons/user.png"
+      }
+    ]
+  }
+}

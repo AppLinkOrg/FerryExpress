@@ -1,0 +1,100 @@
+.maintab_icon{
+  width: 60rpx;
+  height: 60rpx;
+}
+.headerback{
+  width: 750rpx;
+  height: 230rpx;
+}
+.headerback image{
+  width: 750rpx;
+  height: 230rpx;
+}
+.headerlogo{
+  position: absolute;
+  top: 0;
+  width: 750rpx;
+  height: 230rpx;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+.logoborder{
+  border-radius: 10rpx;
+  width: 150rpx;
+  height: 150rpx;
+  background-color: white;
+}
+.headerlogo .logo{
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 10rpx;
+}
+
+.info-icon{
+  width: 40rpx;
+  height: 40rpx;
+}
+.infoitem{
+  margin-top: 14rpx;
+  margin-bottom: 14rpx;
+}
+.infodesc{
+  margin-left: 10rpx;
+  align-items: center;
+  color:#666;
+  font-size: 28rpx;
+}
+.contact-info{
+  align-content: center;
+  align-items: center;
+}
+.info-icon-big{
+  width: 100rpx;
+  height: 100rpx;
+}
+.searchbar{
+  margin:40rpx;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding:10rpx;
+  border-radius: 30rpx;
+}
+
+.searchbar .searchbaricon{
+  width: 24rpx;
+  height: 24rpx;
+  margin-left: 250rpx;
+  margin-right:20rpx;
+  margin-top: -14rpx;
+}
+.searchbar .searchbaricon image{
+  width: 40rpx;
+  height: 40rpx;
+}
+.searchbar .searchbartext{
+  color: #dbdbdb;
+}
+
+.branditem{
+  width: 25%;
+  padding-bottom: 20rpx;
+}
+.branditem image{
+  width:80rpx;
+  height: 72rpx;
+}
+
+.baozhangitem{
+  width: 27%;
+  padding: 20rpx;
+}
+.baozhangitem image{
+  width:60rpx;
+  height: 60rpx;
+}
+
+.caritem{
+  width: 50%;
+}
+.caritem image{
+  width: 320rpx;
+  height: 240rpx;
+}
