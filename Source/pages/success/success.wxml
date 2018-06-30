@@ -7,6 +7,5 @@
 </view>
 
 <view class='margin-top padding-20'>
-
   <button bindtap='backtopage'>返回</button>
 </view>

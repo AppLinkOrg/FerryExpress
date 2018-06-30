@@ -78,7 +78,7 @@
             </view>
             <view class='flex-1 txt-gray h6' style='margin-left:10rpx;margin-right:10rpx;' wx:if="{{goods!=undefined}}">
               <view wx:for="{{goods}}" wx:key="k" class='flex-row'>
-                <view class='flex-1 h6'>{{item.name}} X {{item.val}}{{item.unit}}</view>
+                <view class='flex-1 h6'>{{item.name}} {{item.val}}{{item.unit}}</view>
               </view>
 
             </view>
@@ -126,8 +126,10 @@
         </view>
       </view>
       <view>
-        <button type='primary' class='margin-top' wx:if="{{id==undefined}}" bindtap='confirmQuote'>马上获取报价</button>
-        <button type='primary' class='margin-top' wx:if="{{id!=undefined}}" bindtap='confirmQuote'>处理中，重新提交</button>
+      <form bindsubmit="confirmQuote" bindreset="formReset" report-submit="{{true}}">
+        <button type='primary' class='margin-top' form-type='submit' wx:if="{{id==undefined}}" >马上获取报价</button>
+        <button type='primary' class='margin-top' form-type='submit' wx:if="{{id!=undefined}}" >处理中，重新提交</button>
+        </form>
       </view>
       <view class='text-center margin-top-10 h6'>
         <label class='txt-white '>报价服务由</label>

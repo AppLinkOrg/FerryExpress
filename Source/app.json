@@ -1,6 +1,7 @@
 {
   "pages":[
     "pages/home/home",
+    "pages/quoteferrylist/quoteferrylist",
     "pages/quoteferrydetail/quoteferrydetail",
     "pages/success/success",
     "pages/quoteferry/quoteferry",
@@ -40,13 +41,13 @@
       },
       {
         "text": "报价单",
-        "pagePath": "pages/servicelist/servicelist",
+        "pagePath": "pages/quoteferrylist/quoteferrylist",
         "iconPath": "images/icons/quote-o.png",
         "selectedIconPath": "images/icons/quote.png"
       },
       {
         "text": "服务",
-        "pagePath": "pages/servicelist/servicelist",
+        "pagePath": "pages/member/member",
         "iconPath": "images/icons/user-o.png",
         "selectedIconPath": "images/icons/user.png"
       }

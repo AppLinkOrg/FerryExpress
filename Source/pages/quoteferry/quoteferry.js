@@ -42,6 +42,9 @@ class Content extends AppBase {
           for (var i = 0; i < info.route.length; i++) {
             info.route[i].location = { lat: info.route[i].lat, lng: info.route[i].lng };
           }
+          if (this.Base.options.action == "copy"){
+            info.id=undefined;
+          }
           this.Base.setMyData(info);
         });
       }
@@ -90,7 +93,9 @@ class Content extends AppBase {
       })
     }
   }
-  confirmQuote(){
+  confirmQuote(e) {
+    //console.log(e);
+    //return;
     var data = this.Base.getMyData();
     console.log(data);
     if (data.mobile==null||data.mobile.length != 11 || data.mobile[0] != "1") {
@@ -118,9 +123,11 @@ class Content extends AppBase {
       weight: data.weight,
       remark: data.remark,
       mobile: data.mobile,
-      realname: data.realname
+      realname: data.realname,
+      formid:e.detail.formId
     };
-    if(this.Base.options.id!=undefined){
+    if(this.Base.options.id!=undefined
+    &&this.Base.options.action!="copy"){
       req.primary_id = this.Base.options.id;
     }
     console.log(req);

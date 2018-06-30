@@ -45,20 +45,42 @@
 
 
 
-  <view class='padding-20 flex-row flex-wrap h6' wx:if="{{currenttab==0}}">
-    暂无信息
+  <view class='padding-20' wx:if="{{currenttab==0}}">
+    <block wx:if="{{list_2.length==0}}"> 
+    <view class='h6 txt-gray'>暂无未处理的订单</view>
+    
+    </block>
+    <block wx:if="{{list_2.length>0}}"> 
+    <view class='flex-row margin-top-10' >
+      <view class='h6 flex-1 txt-gray'>行程</view>
+      <view class='h6 flex-1 txt-gray'>货品</view>
+      <view class='h6 txt-gray flex-1'>报价</view>
+      <view  class='h6 txt-white'>详情</view>
+    </view>
+    <view class='flex-row margin-top-10' wx:for="{{list_2}}" wx:key="key">
+      <view class='h6 flex-1'>{{item.routestr}}</view>
+      <view class='h6 flex-1'>{{item.goodsstr}}</view>
+      <view class='h6 flex-1 txt-primary'>{{item.quoteamount}}元</view>
+      <navigator url='/pages/quoteferrydetail/quoteferrydetail?id={{item.id}}' class='h6 txt-primary'>处理</navigator>
+    </view>
+    </block>
   </view>
   <view class='padding-20' wx:if="{{currenttab==1}}">
+    <block wx:if="{{list_1.length==0}}"> 
+    <view class='h6 txt-gray'>暂无等待报价的订单</view>
+    </block>
+    <block wx:if="{{list_1.length>0}}"> 
     <view class='flex-row margin-top-10' >
       <view class='h6 flex-1 txt-gray'>行程</view>
       <view class='h6 flex-1 txt-gray'>货品</view>
       <view  class='h6 txt-white'>详情</view>
     </view>
     <view class='flex-row margin-top-10' wx:for="{{list_1}}" wx:key="key">
-      <view class='h6 flex-1'>{{item.routestr}},约{{item.distance}}{{item.duration}}</view>
-      <view class='h6 flex-1'>{{item.goodsstr}},约{{item.weight}}</view>
+      <view class='h6 flex-1'>{{item.routestr}}</view>
+      <view class='h6 flex-1'>{{item.goodsstr}}</view>
       <navigator url='/pages/quoteferry/quoteferry?id={{item.id}}' class='h6 txt-primary'>详情</navigator>
     </view>
+    </block>
   </view>
 
   <view class='padding-40'>

@@ -11,6 +11,9 @@ class Content extends AppBase {
     //options.id=5;
     super.onLoad(options);
     this.Base.setMyData({title:options.title});
+    wx.hideShareMenu({
+      
+    })
   }
   backtopage(){
     wx.switchTab({
