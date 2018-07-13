@@ -1,4 +1,5 @@
 <!--pages/quoteferry/quoteferry.wxml-->
+<form bindsubmit="confirmQuote" bindreset="formReset" report-submit="{{true}}">
 <view class="fullscreen flex-row flex-center" style='z-index:200'>
   <view style='width:5vw;height:100%;z-in'></view>
   <view class='flex-1'>
